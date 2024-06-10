@@ -1,0 +1,8 @@
+<Configuration>
+    <clipGui>/home/matteo/programmazione/GoClipboard/GoHistory/clipGui.sh</clipGui>
+    <DumpFilePath>/home/matteo/programmazione/GoClipboard/GoHistory/dump.txt</DumpFilePath>
+    <BufferLenght>10</BufferLenght>
+    <BackUpFrequency>0 * * * *</BackUpFrequency>
+    <BackUpStrategy>filesystem</BackUpStrategy>
+    <BackUpStoragePath>/home/matteo/programmazione/GoClipboard/GoHistory/backup</BackUpStoragePath>
+</Configuration>
