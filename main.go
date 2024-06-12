@@ -8,6 +8,10 @@ import (
 	"golang.design/x/clipboard"
 )
 
+func init() {
+	// check and load configuration
+}
+
 func main() {
 	err := clipboard.Init()
 	if err != nil {
