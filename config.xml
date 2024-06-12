@@ -1,0 +1,4 @@
+<Configuration>
+    <DaemonPath>/home/matteo/programmazione/multiclipboard_purebash/trueDaemon.sh</DaemonPath>
+    <DumpFilePath>/home/matteo/programmazione/GoClipboard/GoHistory/dump</DumpFilePath>
+</Configuration>

@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	. "main/models"
 	"time"
 
 	"golang.design/x/clipboard"
@@ -10,6 +11,10 @@ import (
 
 func init() {
 	// check and load configuration
+	var config = new(Configuration)
+
+	//actually load configuration
+	config.LoadConfiguration()
 }
 
 func main() {
