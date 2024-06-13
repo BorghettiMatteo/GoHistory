@@ -23,7 +23,7 @@ func (c *Configuration) LoadConfiguration() {
 		return
 	}
 	//if there is the configfile, dump and unmarshal
-	dump, err := os.ReadFile("config.xml")
+	dump, err := os.ReadFile(os.Args[1])
 	if err != nil {
 		println("ERROR: Cannot load configuration")
 		panic(err)
