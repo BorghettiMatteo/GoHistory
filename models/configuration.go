@@ -16,7 +16,8 @@ func (c *Configuration) LoadConfiguration() {
 	//load path of configuration
 
 	//check if file exist in root directory
-	_, err := os.Stat("/home/matteo/programmazione/GoClipboard/GoHistory/config.xml")
+	//args[1] contains the path to the config file
+	_, err := os.Stat(os.Args[1])
 	if err != nil {
 		println("ERROR: File does not exist goddamit ")
 		return
