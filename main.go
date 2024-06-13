@@ -2,11 +2,9 @@ package main
 
 import (
 	"context"
-	"fmt"
 	. "main/models"
-	"time"
-
-	"golang.design/x/clipboard"
+	"os"
+	"os/signal"
 )
 
 var clip Clip
@@ -23,24 +21,8 @@ func init() {
 }
 
 func main() {
-	err := clipboard.Init()
-	if err != nil {
-		panic(err)
-	}
-
-	//var forever chan struct{}
-
-	fmt.Println(string(clipboard.Read(clipboard.FmtText)))
-
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*15)
-	defer cancel()
-	//defer cancel()
-	changed := clipboard.Watch(ctx, clipboard.FmtText)
-	go func() {
-		for i := range changed {
-			println(string(i))
-		}
-	}()
-	<-ctx.Done()
+	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt)
+	//ctx, cancel := context.WithTimeout(context.Background(), time.Second*15)
+	clip.Watching(ctx, cancel)
 
 }
