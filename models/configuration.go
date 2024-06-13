@@ -7,7 +7,7 @@ import (
 
 type Configuration struct {
 	XMLName      xml.Name `xml:"Configuration"`
-	DaemonPath   string   `xml:"DaemonPath"`
+	ClipGui      string   `xml:"clipGui"`
 	DumpFilePath string   `xml:"DumpFilePath"`
 	BufferLenght int      `xml:"BufferLenght"`
 }

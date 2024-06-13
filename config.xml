@@ -1,5 +1,5 @@
 <Configuration>
-    <DaemonPath>/home/matteo/programmazione/multiclipboard_purebash/trueDaemon.sh</DaemonPath>
-    <DumpFilePath>/home/matteo/programmazione/GoClipboard/GoHistory/dump</DumpFilePath>
+    <clipGui>/home/matteo/programmazione/GoClipboard/GoHistory/clipGui.sh</clipGui>
+    <DumpFilePath>/home/matteo/programmazione/GoClipboard/GoHistory/dump.txt</DumpFilePath>
     <BufferLenght>10</BufferLenght>
 </Configuration>
