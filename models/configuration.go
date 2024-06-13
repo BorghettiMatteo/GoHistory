@@ -9,6 +9,7 @@ type Configuration struct {
 	XMLName      xml.Name `xml:"Configuration"`
 	DaemonPath   string   `xml:"DaemonPath"`
 	DumpFilePath string   `xml:"DumpFilePath"`
+	BufferLenght int      `xml:"BufferLenght"`
 }
 
 func (c *Configuration) LoadConfiguration() {

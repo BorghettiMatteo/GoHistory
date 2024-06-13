@@ -9,12 +9,17 @@ import (
 	"golang.design/x/clipboard"
 )
 
+var clip Clip
+
 func init() {
 	// check and load configuration
 	var config = new(Configuration)
 
 	//actually load configuration
 	config.LoadConfiguration()
+
+	//ini the files and clipboard object
+	clip.Init(*config)
 }
 
 func main() {
