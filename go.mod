@@ -2,7 +2,10 @@ module main
 
 go 1.22.4
 
-require golang.design/x/clipboard v0.7.0
+require (
+	github.com/robfig/cron v1.2.0
+	golang.design/x/clipboard v0.7.0
+)
 
 require (
 	golang.org/x/exp v0.0.0-20190731235908-ec7cb31e5a56 // indirect
