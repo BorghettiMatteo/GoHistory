@@ -1,7 +1,6 @@
 package models
 
 import (
-	"io"
 	"os"
 	"time"
 
@@ -18,26 +17,40 @@ func (c *Cronjobber) Run() {
 	_, err := os.Stat(c.backupJob.filepath)
 	if err != nil {
 		println("ERROR: error reading filedump for backup")
-		panic(err)
+		return
 	}
 
-	dest, err := os.Create(time.Now().String())
+	dest, err := os.Create(time.Now().Format("20060102150405"))
 	if err != nil {
-		panic(err)
+		println("ERROR: creating file for backup " + err.Error())
+		return
 	}
 	defer dest.Close()
 
 	//open file to read content
 
-	source, err := os.Open(c.backupJob.filepath)
+	toWrite, err := os.ReadFile(c.backupJob.filepath)
 	if err != nil {
-		panic(err)
+		println("ERROR: reading file for backup " + err.Error())
+		return
 	}
-	defer source.Close()
-	_, err = io.Copy(dest, source)
+
+	//compress the backup
+	exitdump, err := CreateCompressedLog(toWrite)
 	if err != nil {
-		panic(err)
+		println("ERROR: " + "error during compression")
+		return
 	}
+
+	// write to file
+	_, err = dest.Write(exitdump)
+
+	if err != nil {
+		println("ERROR: error writing logs to file" + err.Error())
+		return
+	}
+
+	println("SUCCESS: successfully backupped my clipboard history, hooray")
 }
 
 func (c *Cronjobber) initBackup(filepath string) {
