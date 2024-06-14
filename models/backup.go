@@ -27,7 +27,12 @@ func (c *Backup) ExecuteBackup() {
 }
 
 func (c *Backup) SetupBackup(config *Configuration) {
-	c.Backup = new(Cronjobber)
+	switch config.BackUSptrategy {
+	case "cron":
+		c.Backup = new(Cronjobber)
+	case "aws":
+		c.Backup = new(AWSBackupper)
+	}
 	c.Schedule = config.BackUpFrequency
 	c.Backup.initBackup(config.DumpFilePath)
 }

@@ -3,4 +3,5 @@
     <DumpFilePath>/home/matteo/programmazione/GoClipboard/GoHistory/dump.txt</DumpFilePath>
     <BufferLenght>10</BufferLenght>
     <BackUpFrequency>1/60 * * * *</BackUpFrequency>
+    <BackUpStrategy>cron</BackUpStrategy>
 </Configuration>

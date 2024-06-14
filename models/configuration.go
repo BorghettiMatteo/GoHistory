@@ -11,6 +11,7 @@ type Configuration struct {
 	DumpFilePath    string   `xml:"DumpFilePath"`
 	BufferLenght    int      `xml:"BufferLenght"`
 	BackUpFrequency string   `xml:"BackUpFrequency"`
+	BackUSptrategy  string   `xml:"BackUpStrategy"`
 }
 
 func (c *Configuration) LoadConfiguration() {
