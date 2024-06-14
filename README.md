@@ -1,3 +1,5 @@
+<img src="goClipboardArt.jpg" alt="isolated" width="200"/>
+
 # GoHistory
 
 ## What is this?
