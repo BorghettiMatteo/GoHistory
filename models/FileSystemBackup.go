@@ -16,8 +16,22 @@ func (f *FileSystemBackup) Run() {
 		println("ERROR: error reading filedump for backup")
 		return
 	}
+	pathAlgebra, err := os.Getwd()
+	if err != nil {
+		println("Error searching for backupFolder: " + err.Error())
+	}
 
-	dest, err := os.Create(time.Now().Format("20060102150405"))
+	//define pathAlgebra as the current path to the backup folder
+	pathAlgebra += "/backup/"
+	_, err = os.Stat(pathAlgebra)
+	if os.IsNotExist(err) {
+		//create
+		mkdirErr := os.Mkdir(pathAlgebra, 6)
+		if mkdirErr != nil {
+			println("ERROR: creating backup folder: " + mkdirErr.Error())
+		}
+	}
+	dest, err := os.Create(pathAlgebra + time.Now().Format("20060102150405"))
 	if err != nil {
 		println("ERROR: creating file for backup " + err.Error())
 		return
