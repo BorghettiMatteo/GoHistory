@@ -3,8 +3,6 @@ package models
 import (
 	"os"
 	"time"
-
-	"github.com/robfig/cron"
 )
 
 type FileSystemBackup struct {
@@ -58,11 +56,9 @@ func (f *FileSystemBackup) InitBackup(filepath string) {
 }
 
 func (f *FileSystemBackup) Do(schedule string) {
-	csched, err := cron.Parse(schedule)
+	err := f.cronJobber.ScheduleJob(schedule, f)
 	if err != nil {
 		println("ERROR: " + "error parsing the schedule")
 		panic(err)
 	}
-	f.cronJobber.cronEngine.Schedule(csched, f)
-	f.cronJobber.cronEngine.Start()
 }

@@ -22,3 +22,13 @@ func (c *Cronjobber) InitCronJobber(filepath string) error {
 	return nil
 
 }
+
+func (c *Cronjobber) ScheduleJob(schedule string, job cron.Job) error {
+	csched, err := cron.Parse(schedule)
+	if err != nil {
+		return err
+	}
+	c.cronEngine.Schedule(csched, job)
+	c.cronEngine.Start()
+	return nil
+}

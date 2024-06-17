@@ -28,7 +28,7 @@ func (c *Backup) ExecuteBackup() {
 
 func (c *Backup) SetupBackup(config *Configuration) {
 	switch config.BackUSptrategy {
-	case "cron":
+	case "filesystem":
 		c.Backup = new(FileSystemBackup)
 	case "aws":
 		c.Backup = new(AWSBackupper)

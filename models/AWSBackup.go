@@ -1,15 +1,24 @@
 package models
 
 type AWSBackupper struct {
-	AWSPointer string
-	backupJob  InternJob
+	awsPointer string
+	cronJobber *Cronjobber
 }
 
 func (a *AWSBackupper) InitBackup(filepath string) {
+	a.cronJobber = new(Cronjobber)
 	println("per ora ci faccio niente,  ma grazie per il pensiero")
-	a.backupJob = InternJob{filepath: filepath}
+	a.cronJobber.InitCronJobber(filepath)
+}
+
+func (a *AWSBackupper) Run() {
+	println("eeeeeeeeeeee")
 }
 
 func (a *AWSBackupper) Do(schedule string) {
-	println("sto backuppando su aws!")
+	err := a.cronJobber.ScheduleJob(schedule, a)
+	if err != nil {
+		println("ERROR: " + "error parsing the schedule")
+		panic(err)
+	}
 }
