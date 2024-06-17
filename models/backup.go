@@ -8,8 +8,8 @@ import (
 )
 
 type ConcreteBackUpStrategy interface {
-	do(schedule string)
-	initBackup(filepath string)
+	Do(schedule string)
+	InitBackup(filepath string)
 }
 
 type InternJob struct {
@@ -23,18 +23,18 @@ type Backup struct {
 }
 
 func (c *Backup) ExecuteBackup() {
-	c.Backup.do(c.Schedule)
+	c.Backup.Do(c.Schedule)
 }
 
 func (c *Backup) SetupBackup(config *Configuration) {
 	switch config.BackUSptrategy {
 	case "cron":
-		c.Backup = new(Cronjobber)
+		c.Backup = new(FileSystemBackup)
 	case "aws":
 		c.Backup = new(AWSBackupper)
 	}
 	c.Schedule = config.BackUpFrequency
-	c.Backup.initBackup(config.DumpFilePath)
+	c.Backup.InitBackup(config.DumpFilePath)
 }
 
 func CreateCompressedLog(dump []byte) ([]byte, error) {
