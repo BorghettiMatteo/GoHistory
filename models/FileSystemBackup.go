@@ -2,11 +2,13 @@ package models
 
 import (
 	"os"
+	"path"
 	"time"
 )
 
 type FileSystemBackup struct {
-	cronJobber *Cronjobber
+	cronJobber       *Cronjobber
+	backUpFolderPath string
 }
 
 func (f *FileSystemBackup) Run() {
@@ -16,22 +18,18 @@ func (f *FileSystemBackup) Run() {
 		println("ERROR: error reading filedump for backup")
 		return
 	}
-	pathAlgebra, err := os.Getwd()
+	_, err = os.Stat(f.backUpFolderPath)
 	if err != nil {
 		println("Error searching for backupFolder: " + err.Error())
 	}
-
-	//define pathAlgebra as the current path to the backup folder
-	pathAlgebra += "/backup/"
-	_, err = os.Stat(pathAlgebra)
 	if os.IsNotExist(err) {
 		//create
-		mkdirErr := os.Mkdir(pathAlgebra, 6)
+		mkdirErr := os.Mkdir(f.backUpFolderPath, 0755)
 		if mkdirErr != nil {
 			println("ERROR: creating backup folder: " + mkdirErr.Error())
 		}
 	}
-	dest, err := os.Create(pathAlgebra + time.Now().Format("20060102150405"))
+	dest, err := os.Create(path.Join(f.backUpFolderPath, time.Now().Format("20060102150405")))
 	if err != nil {
 		println("ERROR: creating file for backup " + err.Error())
 		return
@@ -64,9 +62,11 @@ func (f *FileSystemBackup) Run() {
 	println("SUCCESS: successfully backupped my clipboard history, hooray")
 }
 
-func (f *FileSystemBackup) InitBackup(filepath string) {
+func (f *FileSystemBackup) InitBackup(config *Configuration) {
 	f.cronJobber = new(Cronjobber)
-	f.cronJobber.InitCronJobber(filepath)
+	f.cronJobber.InitCronJobber(config.DumpFilePath)
+	f.backUpFolderPath = config.BackUpStoragePath
+
 }
 
 func (f *FileSystemBackup) Do(schedule string) {

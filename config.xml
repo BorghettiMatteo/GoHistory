@@ -4,4 +4,5 @@
     <BufferLenght>10</BufferLenght>
     <BackUpFrequency>1/60 * * * *</BackUpFrequency>
     <BackUpStrategy>filesystem</BackUpStrategy>
+    <BackUpStoragePath>/home/matteo/programmazione/GoClipboard/GoHistory/backup</BackUpStoragePath>
 </Configuration>

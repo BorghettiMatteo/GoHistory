@@ -6,12 +6,13 @@ import (
 )
 
 type Configuration struct {
-	XMLName         xml.Name `xml:"Configuration"`
-	ClipGui         string   `xml:"clipGui"`
-	DumpFilePath    string   `xml:"DumpFilePath"`
-	BufferLenght    int      `xml:"BufferLenght"`
-	BackUpFrequency string   `xml:"BackUpFrequency"`
-	BackUSptrategy  string   `xml:"BackUpStrategy"`
+	XMLName           xml.Name `xml:"Configuration"`
+	ClipGui           string   `xml:"clipGui"`
+	DumpFilePath      string   `xml:"DumpFilePath"`
+	BufferLenght      int      `xml:"BufferLenght"`
+	BackUpFrequency   string   `xml:"BackUpFrequency"`
+	BackUSptrategy    string   `xml:"BackUpStrategy"`
+	BackUpStoragePath string   `xml:"BackUpStoragePath"`
 }
 
 func (c *Configuration) LoadConfiguration() {

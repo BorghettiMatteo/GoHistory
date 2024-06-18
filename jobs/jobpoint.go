@@ -25,7 +25,7 @@ func main() {
 		job = new(RestoreBackupFileSystem)
 	default:
 		println("orococoasod")
-		return
+		job = new(RestoreBackupFileSystem)
 	}
 	// execute job
 	job.RunJob()
