@@ -3,7 +3,6 @@
 index=0
 field=()
 filepath="/home/matteo/programmazione/GoClipboard/GoHistory/dump.txt"
-count=1
 echo $filepath
 
 #cat clipboardHistory.txt | while read line
@@ -14,8 +13,7 @@ do
 		read line1
 		b=`echo "$line1" | base64 --decode`
 		
-		field+=("$count" "$b")  
-		((count++))
+		field+=("$b")  
 	fi
 done <"$filepath"
 
@@ -25,7 +23,6 @@ echo "${field[@]}"
 returntosender=$(zenity \
 	--list \
 	--title "Clipboard History" \
-	--column "Index"\
 	--column "content" \
 	"${field[@]}" \
 	--height=800 \
