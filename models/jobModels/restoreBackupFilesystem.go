@@ -23,14 +23,14 @@ func writeNewDumpFile(gzReder *gzip.Reader) error {
 
 	//every time I read the files, i got an EOF, but the file seems ok
 	resB.ReadFrom(gzReder)
-	if os.IsExist(err) {
+	if os.IsExist(err) || err == nil {
 		//If the file exists, override it
 		fileDescriptor, err := os.OpenFile(initConfig().DumpFilePath, os.O_WRONLY, 0775)
 		if err != nil {
 			println("ERROR: error opening dump for overriding " + err.Error())
 			return err
 		}
-		fileDescriptor.Close()
+		defer fileDescriptor.Close()
 
 		//write to file
 		_, err = fileDescriptor.Write(resB.Bytes())
