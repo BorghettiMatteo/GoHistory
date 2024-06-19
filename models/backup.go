@@ -41,6 +41,7 @@ func CreateCompressedLog(dump []byte) ([]byte, error) {
 	var bytesBuff bytes.Buffer
 	writer := gzip.NewWriter(&bytesBuff)
 	_, err := writer.Write(dump)
+	writer.Flush()
 	defer writer.Close()
 	if err != nil {
 		return nil, err
