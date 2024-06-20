@@ -38,6 +38,7 @@ This is the template of the config file (as of today)
     <BufferLenght></BufferLenght>
     <BackUpFrequency></BackUpFrequency>
     <BackUpStrategy></BackUpStrategy>
+    <BackUpStoragePath></BackUpStoragePath>
 </Configuration>
 ```
 
@@ -46,7 +47,7 @@ This is the template of the config file (as of today)
 3. **BufferLenght** is the lenght of the *in-memory* clipboard buffer
 4. **BackUpFrequency** is a cron expression for scheduling the backups
 5. **BackUpStrategy** as of today, `aws` and `cron` are the only one supported
-
+6. **BackUpStoragePath** where to store your *backup* folder
 
 ## Running goClipboard
 
